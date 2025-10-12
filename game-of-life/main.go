@@ -25,7 +25,7 @@ const (
 	// SeedCount - Number of seeds to start with
 	SeedCount = 50
 	// Spread - Radius of initial pattern
-	Spread = 10
+	Spread = 20
 )
 
 var (
@@ -182,7 +182,7 @@ func main() {
 		if rl.IsKeyPressed(rl.KeyQ) {
 			break
 		}
-		if rl.IsMouseButtonPressed(rl.MouseLeftButton) {
+		if rl.IsKeyPressed(rl.KeySpace) {
 			pause = !pause
 		}
 
@@ -204,9 +204,9 @@ func main() {
 		if len(states) == 3 {
 			states = states[1:]
 		}
-		states = append(states, serialize(&grid))
 
 		if !pause {
+			states = append(states, serialize(&grid))
 			result := gol(&grid)
 			grid = result.Grid
 			if !result.Dead {
